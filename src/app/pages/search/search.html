@@ -1,17 +1,17 @@
-<div class="page-container">
-  <div class="header">
+<div class="max-w-screen-md mx-auto my-8 px-4 font-sans">
+  <div class="flex justify-between items-center mb-4">
     <app-auth-button></app-auth-button>
   </div>
 
-  <div class="search-bar">
+  <div class="flex gap-2 mb-8">
     <app-search-form (doSearch)="processSearch($event)"></app-search-form>
   </div>
 
-  <div *ngIf="isLoading()" class="loading">Searching breweries...</div>
-
-  <div *ngIf="error()" class="error">
-    {{ error() }}
+  <div *ngIf="isLoading()" class="text-sm text-gray-500 mb-4">
+    Searching breweries...
   </div>
+
+  <div *ngIf="error()" class="text-sm text-red-500 mb-4">{{ error() }}</div>
 
   <app-brewery-list [breweries]="breweries()"></app-brewery-list>
 </div>

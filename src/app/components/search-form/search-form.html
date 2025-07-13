@@ -1,14 +1,29 @@
-<div class="search-container">
-  <form (submit)="processSearch($event)" class="search-form">
+<div>
+  <form
+    (submit)="processSearch($event)"
+    class="flex flex-wrap items-center gap-2 max-w-md"
+  >
     <input
       type="text"
       [formControl]="cityControl"
       placeholder="Enter city name"
-      [class.invalid]="cityControl.invalid && cityControl.touched"
+      [ngClass]="{
+        'border border-gray-300 rounded px-2 py-2 text-base flex-1': true,
+        'border-red-500': cityControl.invalid && cityControl.touched
+      }"
     />
-    <button type="submit" [disabled]="cityControl.invalid">Search</button>
+    <button
+      type="submit"
+      [disabled]="cityControl.invalid"
+      class="px-4 py-2 rounded text-white cursor-pointer bg-blue-500 disabled:bg-gray-500 disabled:cursor-not-allowed"
+    >
+      Search
+    </button>
 
-    <div *ngIf="cityControl.invalid && cityControl.touched" class="error">
+    <div
+      *ngIf="cityControl.invalid && cityControl.touched"
+      class="text-red-500 text-sm w-full mt-1"
+    >
       <div *ngIf="cityControl.errors?.['required']">City name is required.</div>
       <div *ngIf="cityControl.errors?.['minlength']">
         Minimum 2 characters required.

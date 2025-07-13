@@ -1,22 +1,34 @@
-<div *ngIf="brewery() as b" class="brewery-card">
-  <div class="brewery-name">
-    <a [routerLink]="['/brewery-detail', b.id]">{{ b.name }}</a>
+<div
+  *ngIf="brewery() as b"
+  class="bg-white border border-gray-200 rounded-lg shadow p-4 sm:p-6"
+>
+  <div class="font-semibold text-lg mb-2">
+    <a
+      [routerLink]="['/brewery-detail', b.id]"
+      class="hover:underline text-gray-800"
+    >
+      {{ b.name }}
+    </a>
   </div>
-  <div class="brewery-detail">{{ b.city }}, {{ b.state }}</div>
-  <div class="brewery-detail">{{ b.country }}</div>
-  <div class="brewery-detail" *ngIf="b.website_url">
-    <a [href]="b.website_url" target="_blank" class="brewery-link">
+
+  <div class="text-sm text-gray-600 my-1">{{ b.city }}, {{ b.state }}</div>
+  <div class="text-sm text-gray-600 my-1">{{ b.country }}</div>
+
+  <div *ngIf="b.website_url" class="text-sm text-blue-600 my-1">
+    <a [href]="b.website_url" target="_blank" class="hover:underline">
       {{ b.website_url }}
     </a>
   </div>
-  <div class="brewery-detail" *ngIf="b.phone">{{ b.phone }}</div>
-  <div class="brewery-detail">{{ b.brewery_type }}</div>
-  <div class="brewery-detail" *ngIf="b.street">{{ b.street }}</div>
-  <div class="brewery-detail">{{ b.postal_code }}</div>
+
+  <div *ngIf="b.phone" class="text-sm text-gray-600 my-1">{{ b.phone }}</div>
+  <div class="text-sm text-gray-600 my-1">{{ b.brewery_type }}</div>
+  <div *ngIf="b.street" class="text-sm text-gray-600 my-1">{{ b.street }}</div>
+  <div class="text-sm text-gray-600 my-1">{{ b.postal_code }}</div>
+
   <div
-    class="favorite"
-    (click)="handleToggle(b.id)"
     *ngIf="auth.isAuthenticated$ | async"
+    class="mt-2 text-sm cursor-pointer text-blue-600 hover:underline"
+    (click)="handleToggle(b.id)"
   >
     <span *ngIf="isFavorite(b.id)">★ Favorite</span>
     <span *ngIf="!isFavorite(b.id)">☆ Mark as Favorite</span>

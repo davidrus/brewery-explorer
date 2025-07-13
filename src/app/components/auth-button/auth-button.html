@@ -1,8 +1,9 @@
 <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-  <div *ngIf="auth.user$ | async as user">
+  <div *ngIf="auth.user$ | async as user" class="text-sm text-gray-700">
     <span>Welcome {{ user.name }}</span>
   </div>
   <button
+    class="ml-2 px-2 py-1 text-xs rounded border border-gray-300 bg-gray-100 hover:bg-gray-200 cursor-pointer"
     (click)="
       auth.logout({ logoutParams: { returnTo: document.location.origin } })
     "
@@ -12,5 +13,10 @@
 </ng-container>
 
 <ng-template #loggedOut>
-  <button (click)="auth.loginWithRedirect()">Log in</button>
+  <button
+    class="px-2 py-1 text-xs rounded border border-gray-300 bg-gray-100 hover:bg-gray-200 cursor-pointer"
+    (click)="auth.loginWithRedirect()"
+  >
+    Log in
+  </button>
 </ng-template>
