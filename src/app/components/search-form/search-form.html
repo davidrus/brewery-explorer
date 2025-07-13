@@ -1,0 +1,24 @@
+<div class="search-container">
+  <form (submit)="processSearch($event)" class="search-form">
+    <input
+      type="text"
+      [formControl]="cityControl"
+      placeholder="Enter city name"
+      [class.invalid]="cityControl.invalid && cityControl.touched"
+    />
+    <button type="submit" [disabled]="cityControl.invalid">Search</button>
+
+    <div *ngIf="cityControl.invalid && cityControl.touched" class="error">
+      <div *ngIf="cityControl.errors?.['required']">City name is required.</div>
+      <div *ngIf="cityControl.errors?.['minlength']">
+        Minimum 2 characters required.
+      </div>
+      <div *ngIf="cityControl.errors?.['maxlength']">
+        Maximum 50 characters allowed.
+      </div>
+      <div *ngIf="cityControl.errors?.['pattern']">
+        Only letters, numbers and spaces allowed.
+      </div>
+    </div>
+  </form>
+</div>

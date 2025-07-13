@@ -1,0 +1,17 @@
+<div class="page-container">
+  <div class="header">
+    <app-auth-button></app-auth-button>
+  </div>
+
+  <div class="search-bar">
+    <app-search-form (doSearch)="processSearch($event)"></app-search-form>
+  </div>
+
+  <div *ngIf="isLoading()" class="loading">Searching breweries...</div>
+
+  <div *ngIf="error()" class="error">
+    {{ error() }}
+  </div>
+
+  <app-brewery-list [breweries]="breweries()"></app-brewery-list>
+</div>

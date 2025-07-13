@@ -1,0 +1,22 @@
+<div *ngIf="brewery() as b" class="brewery-card">
+  <div class="brewery-name">{{ b.name }}</div>
+  <div class="brewery-detail">{{ b.city }}, {{ b.state }}</div>
+  <div class="brewery-detail">{{ b.country }}</div>
+  <div class="brewery-detail" *ngIf="b.website_url">
+    <a [href]="b.website_url" target="_blank" class="brewery-link">
+      {{ b.website_url }}
+    </a>
+  </div>
+  <div class="brewery-detail" *ngIf="b.phone">{{ b.phone }}</div>
+  <div class="brewery-detail">{{ b.brewery_type }}</div>
+  <div class="brewery-detail" *ngIf="b.street">{{ b.street }}</div>
+  <div class="brewery-detail">{{ b.postal_code }}</div>
+  <div
+    class="favorite"
+    (click)="handleToggle(b.id)"
+    *ngIf="auth.isAuthenticated$ | async"
+  >
+    <span *ngIf="isFavorite(b.id)">★ Favorite</span>
+    <span *ngIf="!isFavorite(b.id)">☆ Mark as Favorite</span>
+  </div>
+</div>

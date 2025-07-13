@@ -1,0 +1,9 @@
+<ul *ngIf="breweries().length > 0" class="brewery-list">
+  <li *ngFor="let brewery of breweries()" class="brewery-item">
+    <app-brewery-item
+      [brewery]="brewery"
+      (toggle)="toggleFavorite($event)"
+      [favorites]="favorites()"
+    ></app-brewery-item>
+  </li>
+</ul>
