@@ -1,5 +1,7 @@
 <div *ngIf="brewery() as b" class="brewery-card">
-  <div class="brewery-name">{{ b.name }}</div>
+  <div class="brewery-name">
+    <a [routerLink]="['/brewery-detail', b.id]">{{ b.name }}</a>
+  </div>
   <div class="brewery-detail">{{ b.city }}, {{ b.state }}</div>
   <div class="brewery-detail">{{ b.country }}</div>
   <div class="brewery-detail" *ngIf="b.website_url">

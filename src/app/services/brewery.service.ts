@@ -20,4 +20,13 @@ export class BreweryService {
         })
       );
   }
+
+  breweryDetail(id: number): Observable<BreweryItemType> {
+    return this.http.get<BreweryItemType>(`${this.API_URL}/${id}`).pipe(
+      catchError((error) => {
+        console.error('Error fetching brewery detail:', error);
+        return throwError(() => new Error(error));
+      })
+    );
+  }
 }

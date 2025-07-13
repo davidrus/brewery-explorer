@@ -6,4 +6,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/search/search').then((m) => m.SearchComponent),
   },
+  {
+    path: 'brewery-detail/:id',
+    loadComponent: () =>
+      import('./pages/brewery-detail/brewery-detail').then(
+        (m) => m.BreweryDetailComponent
+      ),
+  },
 ];
